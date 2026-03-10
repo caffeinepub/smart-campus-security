@@ -1,0 +1,198 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Smart Campus Security — Dark Command Center Theme */
+    --background: 0.13 0.02 255;
+    --foreground: 0.95 0.01 255;
+    --card: 0.16 0.025 255;
+    --card-foreground: 0.95 0.01 255;
+    --popover: 0.18 0.03 255;
+    --popover-foreground: 0.92 0.01 255;
+    --primary: 0.62 0.18 240;
+    --primary-foreground: 0.98 0 0;
+    --secondary: 0.22 0.035 255;
+    --secondary-foreground: 0.85 0.02 255;
+    --muted: 0.2 0.025 255;
+    --muted-foreground: 0.6 0.04 255;
+    --accent: 0.28 0.05 255;
+    --accent-foreground: 0.92 0.01 255;
+    --destructive: 0.6 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+    --border: 0.28 0.04 255;
+    --input: 0.22 0.035 255;
+    --ring: 0.55 0.15 240;
+
+    /* Semantic status colors */
+    --status-critical: 0.58 0.22 25;
+    --status-high: 0.68 0.18 55;
+    --status-medium: 0.78 0.14 90;
+    --status-low: 0.6 0.16 145;
+    --status-safe: 0.58 0.18 145;
+    --status-info: 0.6 0.18 240;
+
+    /* Chart colors */
+    --chart-1: 0.6 0.22 25;
+    --chart-2: 0.68 0.18 55;
+    --chart-3: 0.78 0.14 90;
+    --chart-4: 0.62 0.18 240;
+    --chart-5: 0.58 0.18 145;
+
+    /* Sidebar */
+    --sidebar: 0.11 0.025 255;
+    --sidebar-foreground: 0.9 0.02 255;
+    --sidebar-primary: 0.62 0.18 240;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.18 0.03 255;
+    --sidebar-accent-foreground: 0.9 0.02 255;
+    --sidebar-border: 0.25 0.04 255;
+    --sidebar-ring: 0.55 0.15 240;
+  }
+
+  .dark {
+    --background: 0.13 0.02 255;
+    --foreground: 0.95 0.01 255;
+    --card: 0.16 0.025 255;
+    --card-foreground: 0.95 0.01 255;
+    --popover: 0.18 0.03 255;
+    --popover-foreground: 0.92 0.01 255;
+    --primary: 0.62 0.18 240;
+    --primary-foreground: 0.98 0 0;
+    --secondary: 0.22 0.035 255;
+    --secondary-foreground: 0.85 0.02 255;
+    --muted: 0.2 0.025 255;
+    --muted-foreground: 0.6 0.04 255;
+    --accent: 0.28 0.05 255;
+    --accent-foreground: 0.92 0.01 255;
+    --destructive: 0.6 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+    --border: 0.28 0.04 255;
+    --input: 0.22 0.035 255;
+    --ring: 0.55 0.15 240;
+    --chart-1: 0.6 0.22 25;
+    --chart-2: 0.68 0.18 55;
+    --chart-3: 0.78 0.14 90;
+    --chart-4: 0.62 0.18 240;
+    --chart-5: 0.58 0.18 145;
+    --sidebar: 0.11 0.025 255;
+    --sidebar-foreground: 0.9 0.02 255;
+    --sidebar-primary: 0.62 0.18 240;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.18 0.03 255;
+    --sidebar-accent-foreground: 0.9 0.02 255;
+    --sidebar-border: 0.25 0.04 255;
+    --sidebar-ring: 0.55 0.15 240;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Helvetica Neue', Arial, system-ui, sans-serif;
+    background-image: 
+      radial-gradient(ellipse at 20% 10%, oklch(0.2 0.06 255 / 0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, oklch(0.18 0.04 280 / 0.3) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+
+  /* Scanline texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      oklch(0.98 0 0 / 0.012) 2px,
+      oklch(0.98 0 0 / 0.012) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* Using system fonts as base — extended by Tailwind config */
+}
+
+@layer utilities {
+  .text-critical { color: oklch(var(--status-critical)); }
+  .text-high { color: oklch(var(--status-high)); }
+  .text-medium { color: oklch(var(--status-medium)); }
+  .text-low-safe { color: oklch(var(--status-low)); }
+  .text-safe { color: oklch(var(--status-safe)); }
+  .text-info { color: oklch(var(--status-info)); }
+
+  .bg-critical { background-color: oklch(var(--status-critical) / 0.15); }
+  .bg-high { background-color: oklch(var(--status-high) / 0.15); }
+  .bg-medium { background-color: oklch(var(--status-medium) / 0.15); }
+  .bg-low-safe { background-color: oklch(var(--status-low) / 0.15); }
+  .bg-safe { background-color: oklch(var(--status-safe) / 0.15); }
+  .bg-info { background-color: oklch(var(--status-info) / 0.15); }
+
+  .border-critical { border-color: oklch(var(--status-critical) / 0.4); }
+  .border-high { border-color: oklch(var(--status-high) / 0.4); }
+  .border-medium { border-color: oklch(var(--status-medium) / 0.4); }
+  .border-low-safe { border-color: oklch(var(--status-low) / 0.4); }
+  .border-safe { border-color: oklch(var(--status-safe) / 0.4); }
+  .border-info { border-color: oklch(var(--status-info) / 0.4); }
+
+  .glow-critical { box-shadow: 0 0 20px oklch(var(--status-critical) / 0.3); }
+  .glow-safe { box-shadow: 0 0 20px oklch(var(--status-safe) / 0.3); }
+  .glow-info { box-shadow: 0 0 20px oklch(var(--status-info) / 0.3); }
+  .glow-primary { box-shadow: 0 0 20px oklch(var(--primary) / 0.25); }
+
+  .panel-glass {
+    background: oklch(var(--card) / 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid oklch(var(--border));
+  }
+
+  .font-display { font-family: 'Bricolage Grotesque', sans-serif; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+  @keyframes pulse-ring {
+    0% { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .animate-pulse-ring {
+    animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  }
+
+  .animate-pulse-dot {
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes scan-line {
+    0% { top: -2px; }
+    100% { top: 100%; }
+  }
+
+  .animate-scan {
+    animation: scan-line 3s linear infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  .animate-blink { animation: blink 1s step-end infinite; }
+}
